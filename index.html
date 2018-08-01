@@ -1,0 +1,82 @@
+﻿<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+  </head>
+  <body>
+    <section class="py-4">
+      <div class="container">
+        <div id="app">
+
+          <div class="d-flex flex-wrap align-items-center justify-content-between mb-3">
+            <div class="d-flex align-items-center">
+              <input class="new-todo-item-title mr-3" placeholder="Создать задачу">
+              <button class="create-new-todo-item btn btn-primary">Создать</button>
+            </div>
+            <div class="text-right">
+              <input id="toggle-view-completed-1" class="toggle-view-completed" type="checkbox">
+              <label for="toggle-view-completed-1">Скрыть выполненые</label>
+            </div>
+          </div>
+          <div class="todo-list d-table text-center"></div>
+        </div>
+      </div>
+    </section>
+
+    <script type="text/template" id="todo-item-template">
+      <div class="d-table-cell p-3 border"><%= order %></div>
+      <div class="d-table-cell p-3 border"><%= title %></div>
+      <div class="d-table-cell p-3 border"><%= date %></div>
+      <div class="d-table-cell p-3 border">
+        <input class="toggle-completed" type="checkbox" <%= completed ? checked="checked" : '' %> >
+      </div>
+      <div class="d-table-cell p-3 border">
+        <button class="btn btn-info edit-todo-item">Редактировать</button>
+        <button class="btn btn-danger delete-todo-item">Удалить</button>
+      </div>
+
+      <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Редактирование</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <input class="new-title" name="title" value="<%= title %>">
+              <input class="new-date" name="date" value="<%= date %>">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary save-changes" data-dismiss="modal">Save changes</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script src="./js/plugins/jquery.min.js"></script>
+    <script src="./js/plugins/bootstrap.min.js"></script>
+    <script src="./js/plugins/underscore-min.js"></script>
+
+    <script src="./js/plugins/backbone-min.js"></script>
+    <script src="./js/plugins/backbone.localStorage.min.js"></script>
+
+    <script src="./js/app/overrides/Backbone.sync.js"></script>
+    <script src="./js/app/overrides/Backbone.Model.js"></script>
+
+
+    <script src="./js/app/models/TodoItem.js"></script>
+    <script src="./js/app/collections/TodoList-native-localStorageV1.js"></script>
+    <!-- <script src="./js/app/collections/TodoList-backbone-localStorage.js"></script> -->
+    <script src="./js/app/views/TodoItemView.js"></script>
+    <script src="./js/app/views/TodoFilterView.js"></script>
+    <script src="./js/app/views/AppView.js"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>
